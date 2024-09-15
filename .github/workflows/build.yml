@@ -9,8 +9,6 @@ on:
     branches:
       - main
       - dev
-  schedule:
-    - cron: '0 0 15 * *'
 
 jobs:
   build:
@@ -42,12 +40,3 @@ jobs:
 
       - run: npm run build
       - run: npm run docs
-
-      - name: Deploy to gh-pages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: docs
-          single-commit: true
-          clean: true
